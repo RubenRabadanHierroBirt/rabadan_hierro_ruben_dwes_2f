@@ -8,17 +8,16 @@ class Usuario extends Model
 {
     protected $fillable = [
         'name',
-        'email',
+        'apellido',
         'DNI',
     ];
     private $nombre;
     private $apellido;
     private $DNI;
-    public function __construct($nombre, $apellido, $DNI){
-        $this->nombre = $nombre;
-        $this->apellido = $apellido;
-        $this->DNI = $DNI;
-    }
+
+    public function setNombre($nombre){$this->nombre = $nombre;}
+    public function setApellido($apellido){$this->apellido = $apellido;}
+    public function setDNI($DNI){$this->DNI = $DNI;}
 
     /*public function store(){
 

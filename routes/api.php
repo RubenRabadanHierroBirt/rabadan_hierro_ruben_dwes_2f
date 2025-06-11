@@ -6,9 +6,11 @@ use app\Models\Usuario;
 use App\Http\Controllers\UsuarioController;
 
 Route::get( '/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+    //return $request->user();
+    return $request->path();
+});
+
 
 Route::get('/usuario', [Usuario::class,'obtenerNombreCompleto']);
 
-Route::post('/usuario', [UsuarioController::class,'procesarNombre']);
+Route::post('/nombreCompleto', [UsuarioController::class,'procesarNombre']);

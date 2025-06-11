@@ -9,14 +9,23 @@ class UsuarioController extends Controller
 {
     private $model;
 
-    public function procesarNombre(Request $request){
-        $nombre = $request->name;
-        $apellido = $request->apellido;
-        $DNI = $request->DNI;
-        $model = new Usuario($nombre, $apellido, $DNI);
-    }
-
     public function obtenerNombreCompleto(){
-        return $this->model->nombreCompleto();
+        return $this->model->obtenerNombreCompleto();
+        //return "Me llamo " . $this->model->nombre ." ". $this->model->apellido . " y mi DNI es " . $this->model->DNI;
+    }
+    public function procesarNombre(Request $request){
+        $json = json_decode($request->getContent(), true);
+        $nombre = $json["nombre"];
+        $apellido = $json["apellido"];
+        $DNI = $json["DNI"];
+
+        $model =new Usuario();
+        $model->nombre = $nombre;
+        $model->apellido = $apellido;
+        $model->DNI = $DNI;
+
+        return "Mi nombre es: "  . "". $nombre ."". $apellido . " y mi DNI es : " . $model->DNI;
+        //return json_encode($json, JSON_PRETTY_PRINT);
+        //return $this->obtenerNombreCompleto();
     }
 }
